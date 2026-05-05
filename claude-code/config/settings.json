@@ -107,7 +107,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "npx prettier --write \"$CLAUDE_FILE_PATH\""
+            "command": "bunx @biomejs/biome format --write --no-errors-on-unmatched \"$CLAUDE_FILE_PATH\""
           },
           {
             "type": "command",
