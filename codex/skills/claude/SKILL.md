@@ -40,6 +40,7 @@ Get an independent read-only opinion from the local Claude Code CLI.
      IMPORTANT: You are reviewing repository context prepared by another coding agent. Do not ask to run tools or inspect files yourself. Do not discuss ~/.codex, .codex, codex/skills, codex/rules, or any agents/openai.yaml file. Ignore harness files completely. Stay focused on the repository code below. Never suggest direct file edits - provide analysis only.
      ```
 4. review mode
+
    - collect local context first:
      - `git diff --stat origin/<base>`
      - `git diff --name-only origin/<base>`
@@ -60,6 +61,7 @@ Get an independent read-only opinion from the local Claude Code CLI.
 
      Be direct. No compliments.
      ```
+
    - append these sections to the prompt in this order:
      - diff stat
      - changed file list
@@ -69,7 +71,9 @@ Get an independent read-only opinion from the local Claude Code CLI.
    - present the output verbatim in a `CLAUDE SAYS (code review)` block
    - set the gate to `FAIL` if the output contains `[P1]` or `overall: fail`
    - otherwise set the gate to `PASS`
+
 5. challenge mode
+
    - collect the same local diff context as review mode
    - if the diff is too large to embed safely in a single prompt, stop and ask the user to narrow the challenge scope
    - construct this prompt, replacing `<focus>` when the user provided one:
@@ -88,9 +92,11 @@ Get an independent read-only opinion from the local Claude Code CLI.
 
      Be adversarial. No compliments.
      ```
+
    - append the same diff and file-content sections used in review mode
    - run Claude with `claude -p "<literal prompt>"`
    - present the output verbatim in a `CLAUDE SAYS (adversarial challenge)` block
+
 6. consult mode
    - always start fresh with `claude -p "<literal prompt>"`
    - if the user wants a follow-up on an earlier Claude exchange, include the relevant prior Claude output and the new question in a fresh prompt instead of trying to resume a session

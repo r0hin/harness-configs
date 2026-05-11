@@ -16,3 +16,4 @@ env = { NIA_API_KEY = "${NIA_API_KEY}", NIA_API_URL = "https://apigcp.trynia.ai/
 
 [features]
 multi_agent = true
+goals = true
